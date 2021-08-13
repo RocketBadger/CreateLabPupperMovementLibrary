@@ -65,8 +65,7 @@ class Configuration:
 
         #################### GAIT #######################
         ## CreateLab Comment
-        ## self.dt controls the speed of the robots Gait, 
-        ## TODO Solve the slow gait problem, see Trello board for clarafication.
+        ## self.dt controls the speed of the robots Gait
         self.dt = 0.01
         self.num_phases = 4
         self.contact_phases = np.array(
