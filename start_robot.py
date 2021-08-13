@@ -20,7 +20,12 @@ def main():
 
         injectionInterface = MessageInectionInterface(injection_conn)
 
-        actionLoop.actionQueue = Demos.turningTest()
+        actionLoop.actionQueue = Demos.emptyQueue()# ny tom kø
+
+        #actionLoop.actionQueue = Demos.test()
+        
+        #actionLoop.actionQueue = Demos.letsgooo()# test 
+        
 
         time.sleep(2)
 
@@ -31,19 +36,29 @@ def main():
         
         # running processes
         robot.start()
+        print("robot started")
+
+
         ## This sleep timer ensures that the robot is listening before the action transmission starts.
         time.sleep(1)
                 
         transmission.start()
-        # injecter.start()
+        print("transmis started")
+        injecter.start()
+        print("injector started")
 
         # wait until processes finish
         robot.join()
+        print("robot joined started")
         transmission.join()
+        print("transmission joined started")
         injecter.join()
+        print("injector joined  started")
 
         robot.terminate()
         transmission.terminate()
         injecter.terminate()
-
+        injecter.terminate()
+ 
+ 
 main()

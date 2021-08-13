@@ -30,6 +30,7 @@ class ActionMessage:
 
         ## currently not used anywhere
         self.hop = 0
+        self.finishhop = 0
 
     def toDictionary(self, MESSAGE_RATE = 50 ):
         """
@@ -54,6 +55,7 @@ class ActionMessage:
             "height": self.height_possitive - self.height_negative,
 
             "hop": self.hop,
+            "finish_hop": self.finishhop,
 
             "message_rate": MESSAGE_RATE,
         }

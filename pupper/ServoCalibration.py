@@ -2,11 +2,10 @@
 
 import numpy as np
 
-## Do not push this file to CreateLab Repo
-## this file is specifficaly set up to work with your current Pupper robot.
+
 MICROS_PER_RAD = 11.333 * 180.0 / np.pi
 NEUTRAL_ANGLE_DEGREES = np.array(
-[[  3., -1.,  8., -9.],
- [ 50., 49., 44., 49.],
- [-28.,-35.,-23.,-25.]]
+[[ -6.,  3.,  3., -8.],
+ [ 50., 40., 52., 41.],
+ [-29.,-61.,-45.,-68.]]
 )

@@ -53,6 +53,7 @@ def msg_Roll_Right(ticks = 0):
 
     return actionMessage
 
+
     
 def msg_Roll_Left(ticks = 0, right = True):
 
@@ -93,6 +94,22 @@ def msg_Pitch_Down(ticks = 0):
     return actionMessage
 
 ############## Forwards, Backwards, Strafing(right and left), momentum functions.
+
+def msg_Generic(ticks = 20, x_axis_velocity=0,y_axis_velocity=0,pitch=0, yaw=0,roll_left=0,roll_right=0,height_negative=0,height_positive=0,Trot=0,Activation=0):
+    actionMessage = ActionMessage("generic")
+    actionMessage.y_axis_velocity = y_axis_velocity
+    actionMessage.x_axis_velocity = x_axis_velocity
+    actionMessage.pitch = pitch
+    actionMessage.yaw = yaw
+    actionMessage.roll_left = roll_left
+    actionMessage.roll_right = roll_right
+    actionMessage.height_negative = height_negative
+    actionMessage.height_positive = height_positive
+    actionMessage.Trot = Trot
+    actionMessage.Activation = Activation
+    actionMessage.ticks = ticks
+    return actionMessage
+
 
 def msg_Forwards(ticks = 0):
     actionMessage = ActionMessage("forwards")
@@ -138,4 +155,16 @@ def msg_Turn_Left(ticks = 0):
     actionMessage.yaw = -1
     actionMessage.ticks = ticks
 
+    return actionMessage
+
+def msg_Hop(ticks = 0):
+    actionMessage = ActionMessage("hop")
+    actionMessage.hop = 1
+    actionMessage.ticks = ticks
+    return actionMessage
+
+def msg_Finishhop(ticks = 0):
+    actionMessage = ActionMessage("finish_hop")
+    actionMessage.finishhop = 1
+    actionMessage.ticks = ticks
     return actionMessage
