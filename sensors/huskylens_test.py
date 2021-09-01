@@ -76,7 +76,7 @@ while(ex == 1):
         v = input("Enter cmd letter:")
         if(v == "QUIT"):
             ex = 0
-            print("QUITING")
+            print("QUITTING")
             break
         if(v == "MENU"):
             printMenu()

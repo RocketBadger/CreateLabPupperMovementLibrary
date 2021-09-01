@@ -74,5 +74,5 @@ class ActionLoop:
 
         
     def _handleInjection(self, message: ActionMessage):
-        print("Injection read and message queued")
+        # print("Injection read and message queued")
         self.actionQueue.put(message)
