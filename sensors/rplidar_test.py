@@ -17,13 +17,15 @@ def process_data(data):
 scan_data = [0] * 360
 
 try:
-    #    print(lidar.get_info())
+    lidar.start_motor()
+    #   print(lidar.info)
     for scan in lidar.iter_scans():
         for (_, angle, distance) in scan:
             scan_data[min([359, floor(angle)])] = distance
-        process_data(scan_data)
+        process_data(distance)
 
 except KeyboardInterrupt:
     print("Stopping.")
 lidar.stop()
+lidar.stop_motor()
 lidar.disconnect()

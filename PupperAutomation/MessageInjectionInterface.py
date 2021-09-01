@@ -3,58 +3,29 @@ from .behaviorFunctions import *
 import time
 from .openmvAprilTest import *
 import random
+from .HuskyLens import *
 
 class MessageInectionInterface:
     def __init__(self, ActionLoopConnection: connection.Connection):
         self.connection = ActionLoopConnection
-        sensorOpen()
-
-    def playDead(self):
-        self.connection.send(msg_Height_Decrease(100))
-        self.connection.send(msg_Wait(500))
+        
+        # sensorOpen()
+        
 
     def injectionLoop(self):
-
-        #self.connection.send(msg_Activation())
+        while True:
+            huskystart()
+            self.connection.send(msg_Wait(200))
         
-        #self.connection.send(msg_Trot(interrupt = True))
-        #self.connection.send(msg_Turn_Left(500))
-        #self.connection.send(msg_Wait(100))
-        #self.connection.send(msg_Pitch_Up(50))
-        #self.connection.send(msg_Strafe_Left(200))
-       
-       
-        """state=1
-        temp=0
-        while 1 :
-            temp=sensorGetTemp()
-            print(temp)
-            if temp >= 37:
-                if state==1:
-                    print("warm")
-                    print("Slowly sit down")
-                    print("wait 5s")
-                    state=0
-                    #time.sleep(5)
-                else:
-                    print("waiting...")
-            else:
-                if state == 0:
-                    print("cold")
-                    print("stand up")
-                    print("wait 5s")
-                    state=1
-                    #time.sleep(5)
-                else:
-                    print("waiting...---")
-            time.sleep(1)
-            """
+        
+    def randomActionLoop(self):
+        # remember to uncomment sensor code if using infrared temp!
         #self.connection.send(msg_Trot(interrupt=False))
         state=1
         temp=0
         ran=1
         while 1 :
-            temp=sensorGetTemp()
+            # temp=sensorGetTemp()
             print(temp)
             if temp >= 37:
                 if state==1:
@@ -101,11 +72,11 @@ class MessageInectionInterface:
                     self.connection.send(msg_Trot(interrupt=False))
                     time.sleep(1.2)
                     
-                elif(ran==5):
+                # elif(ran==5):
                     
-                    self.connection.send(msg_Hop(30))
-                    self.connection.send(msg_Hop(50))
-                    time.sleep(0.8)
+                    # self.connection.send(msg_Hop(30))
+                    # self.connection.send(msg_Hop(50))
+                    # time.sleep(0.8)
                     
                 elif(ran==6):
                     self.connection.send(msg_Trot(interrupt=False))
@@ -122,36 +93,11 @@ class MessageInectionInterface:
                     time.sleep(2.6)
                     
             self.connection.send(msg_Wait(200))
-            #time.sleep(1)
-                    
-                    
-                    
-            #self.connection.send(msg_Wait(100))
-            #time.sleep(1)
-            
-        #self.connection.send(msg_Strafe_Right(100))
+        # sensorClose()
         
-        #self.connection.send(msg_Generic)
-        #self.connection.send(msg_Trot(interrupt = True))
-        #self.connection.send(msg_Trot(interrupt = True))
-        #self.connection.send(msg_Hop)
         
-        #self.connection.send(msg_Pitch_Up(100))
-        #self.connection.send(msg_Activation())
-        
-        #self.injection.send(msg_Pitch_Up(500))
-        #self.connection.send(msg_Generic(ticks = 500, roll_left = 1))
+    def playDead(self):
+        self.connection.send(msg_Height_Decrease(100))
+        self.connection.send(msg_Wait(500))
 
-        #self.connection.send(msg_Backwards(ticks=500))
-        #self.connection.send(msg_Trot())"""
-        """""
-        while 1:
-            temp=sensorGetTemp()
-            print(temp)
-            time.sleep(5)
-        """""
-            
         
-        #print("injection sendt")
-        sensorClose()
-
