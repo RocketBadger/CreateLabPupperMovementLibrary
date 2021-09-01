@@ -15,6 +15,7 @@ class MessageInectionInterface:
     def injectionLoop(self):
         while True:
             huskystart()
+            huskyCount()
             self.connection.send(msg_Wait(200))
         
         
