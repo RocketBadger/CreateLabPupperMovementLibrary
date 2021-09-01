@@ -15,18 +15,12 @@ def run_robot(PipeConnection: connection.Connection, printState: bool = False):
     """
 
     config = Configuration()
-
     hardware_interface = HardwareInterface()
-
     controller = Controller(config, four_legs_inverse_kinematics,)
-
     state = State()
-
     msgHandler = MessageHandler(config, PipeConnection)
 
-
     last_loop = time.time()
-
     deactivate = False
 
     while True:
@@ -34,28 +28,22 @@ def run_robot(PipeConnection: connection.Connection, printState: bool = False):
         if deactivate == True:
             print("Robot loop terminated")
             break
-
         while True:
-
             command = msgHandler.get_command_from_pipe(state)
             if command.activate_event == 1:
                 break
-
             time.sleep(0.1)
             
 
         while True:
-
             now = time.time()
             if now - last_loop < config.dt:
                 continue
             last_loop = time.time()
-
             command = msgHandler.get_command_from_pipe(state)
             if command.activate_event == 1:
                 deactivate = True
                 break
-
             state.quat_orientation = np.array([1, 0, 0, 0])
 
             # Step the controller forward by dt

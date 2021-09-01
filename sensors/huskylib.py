@@ -67,6 +67,9 @@ class Block:
         self.ID=ID
         self.learned= True if ID > 0 else False
         self.type="BLOCK"
+        
+    def getID(self):
+        return self.ID
 
 
 
