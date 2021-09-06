@@ -20,11 +20,7 @@ def main():
 
         injectionInterface = MessageInectionInterface(injection_conn)
 
-        actionLoop.actionQueue = Demos.emptyQueue()# ny tom kø
-
-        #actionLoop.actionQueue = Demos.test()
-        
-        #actionLoop.actionQueue = Demos.letsgooo()# test 
+        # actionLoop.actionQueue = Demos.emptyQueue()# ny tom kø
         
 
         time.sleep(2)

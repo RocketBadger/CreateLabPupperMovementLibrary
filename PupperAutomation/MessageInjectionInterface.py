@@ -10,13 +10,21 @@ class MessageInectionInterface:
         self.connection = ActionLoopConnection
         
         # sensorOpen()
-        
+        self.connection.send(msg_Activation())
 
     def injectionLoop(self):
-        huskystart()
-        while True:
-            huskyCount()
-            self.connection.send(msg_Wait(200))
+
+        
+        self.connection.send(msg_Trot(interrupt=False))
+        self.connection.send(msg_Yaw_Left(30))
+        self.connection.send(msg_Wait(90))
+        self.connection.send(msg_Yaw_Right(30))
+        self.connection.send(msg_Wait(30))
+        
+        # huskystart()
+        # while True:
+        #     huskyCount()
+        #     self.connection.send(msg_Wait(200))
         
         
     def randomActionLoop(self):
