@@ -36,33 +36,35 @@ class ActionLoop:
             # if self.actionQueue.qsize() != 0:
 
                 ## prepare message duration and sending
+            # interruption: ActionMessage = None
             if self.injecter_Connection.poll() == True:
+                # if interruption != None:
+                #     currentActionMsg: ActionMessage = interruption
+                #     interruption = None
+                # else:
                 currentActionMsg: ActionMessage = self.injecter_Connection.recv()
                 ticks = currentActionMsg.ticks
                 messageDone = False
-
+                print(currentActionMsg.toDictionary())
                 while messageDone == False:
-
                         ## Check for interrupting messages
-                    if self.injecter_Connection.poll() == True:
-                        message: ActionMessage = self.injecter_Connection.recv()
-
-                        if message.interrupt == True:
-                                ## if message is an interrupt kill current queue, and build new with interruption message
-                                # self._handleInterruption(message)
-                            ticks == 0
-                            messageDone = True
-                            break
-                            # else:
-                                # self._handleInjection(message)
-
                     self.robot_Connection.send(currentActionMsg.toDictionary())
-
+                    # if self.injecter_Connection.poll() == True:
+                    #     message: ActionMessage = self.injecter_Connection.recv()
+                    #     if message.interrupt == True:
+                    #             ## if message is an interrupt kill current queue, and build new with interruption message
+                    #             # self._handleInterruption(message)
+                    #         ticks == 0
+                    #         messageDone = True
+                    #         interruption: ActionMessage = message
+                    #         break
+                        # else:
+                        #         # self._handleInjection(message)
+                        #     print(currentActionMsg.toDictionary())
+                        #     self.robot_Connection.send(currentActionMsg.toDictionary())
                     ticks -= 1
-
                     if ticks <= 0:
-                            messageDone = True
-
+                        messageDone = True
             self.robot_Connection.send(ActionMessage().toDictionary())
 
 

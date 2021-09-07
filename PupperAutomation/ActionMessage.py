@@ -41,6 +41,7 @@ class ActionMessage:
 
             "name": self.name,
             "ticks": self.ticks,
+            "interrupt": self.interrupt,
             
             "y_axis_velocity": -self.y_axis_velocity,
             "x_axis_velocity": self.x_axis_velocity,

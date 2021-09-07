@@ -15,11 +15,17 @@ class MessageInectionInterface:
     def injectionLoop(self):
 
         
-        self.connection.send(msg_Trot(interrupt=False))
-        self.connection.send(msg_Yaw_Left(30))
-        self.connection.send(msg_Wait(90))
-        self.connection.send(msg_Yaw_Right(30))
-        self.connection.send(msg_Wait(30))
+        # self.connection.send(msg_Trot(interrupt=False))
+        while True:
+            self.connection.send(msg_Trot(interrupt=False))
+            self.connection.send(msg_Wait(90))
+            self.connection.send(msg_Trot(interrupt=False))
+            self.connection.send(msg_Yaw_Left(100))
+            self.connection.send(msg_Trot(interrupt=False))
+            self.connection.send(msg_Wait(90))
+            self.connection.send(msg_Trot(interrupt=False))
+            self.connection.send(msg_Yaw_Right(100))
+            self.connection.send(msg_Wait(300))
         
         # huskystart()
         # while True:

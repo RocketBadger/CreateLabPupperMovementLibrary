@@ -77,6 +77,7 @@ def msg_Yaw_Left(ticks = 0):
     actionMessage.yaw = -1
     actionMessage.ticks = ticks
 
+
     return actionMessage
 
 def msg_Pitch_Up(ticks = 0):
