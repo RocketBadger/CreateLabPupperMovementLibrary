@@ -8,11 +8,12 @@ def huskystart():
     
 def huskyCount():
     print(husky.count())
-    frens = husky.count()
-    if frens > 0:
+    # frens = husky.count()
+    # if frens > 0:
         # husky.algorthim("ALGORITHM_FACE_RECOGNITION")
         # huskyTourist()
-        huskySniff()
+        # huskySniff()
+    return husky.count()
         
 # TODO
 # NOT FUNCTIONAL

@@ -13,21 +13,29 @@ class MessageInectionInterface:
         self.connection.send(msg_Activation())
 
     def injectionLoop(self):
-
-        
         # self.connection.send(msg_Trot(interrupt=False))
+        huskystart()
         while True:
-            self.connection.send(msg_Trot(interrupt=False))
-            self.connection.send(msg_Wait(90))
-            self.connection.send(msg_Trot(interrupt=False))
-            self.connection.send(msg_Yaw_Left(100))
-            self.connection.send(msg_Trot(interrupt=False))
-            self.connection.send(msg_Wait(90))
-            self.connection.send(msg_Trot(interrupt=False))
-            self.connection.send(msg_Yaw_Right(100))
-            self.connection.send(msg_Wait(300))
+            frens = huskyCount()
+            if frens > 0:
+                print(huskyCount())
+                self.connection.send(msg_Height_Decrease(80))
+                self.connection.send(msg_Pitch_Down(100))
+                self.connection.send(msg_Height_Increase(80))
+                time.sleep(2.6)
+            else:
+                self.connection.send(msg_Trot(interrupt=False))
+                self.connection.send(msg_Wait(90))
+                self.connection.send(msg_Trot(interrupt=False))
+                self.connection.send(msg_Yaw_Left(50))
+                self.connection.send(msg_Trot(interrupt=False))
+                self.connection.send(msg_Wait(90))
+                self.connection.send(msg_Trot(interrupt=False))
+                self.connection.send(msg_Yaw_Right(50))
+                self.connection.send(msg_Wait(300))
+                time.sleep(5.8)
         
-        # huskystart()
+        # 
         # while True:
         #     huskyCount()
         #     self.connection.send(msg_Wait(200))
