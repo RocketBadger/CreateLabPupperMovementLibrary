@@ -1,9 +1,9 @@
 import serial
-from sensors.huskylib import HuskyLensLibrary
+from sensors.HuskyLens.huskylib import HuskyLensLibrary
 
 def huskystart():
     global husky
-    husky = HuskyLensLibrary("SERIAL", "/dev/ttyUSB0", 3000000)
+    husky = HuskyLensLibrary("SERIAL", "/dev/ttyUSB1", 3000000)
     print("Woof!")
     
 def huskyCount():
