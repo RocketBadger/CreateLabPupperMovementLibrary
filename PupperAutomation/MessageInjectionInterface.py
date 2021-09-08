@@ -15,12 +15,13 @@ class MessageInectionInterface:
 
     def injectionLoop(self):
         # self.connection.send(msg_Trot(interrupt=False))
-        lidargo()
+
         huskystart()
+        lidargo()
         while True:
             frens = huskyCount()
             print(frens)
-            # lidartest()
+            lidartest()
             
             # if frens > 0:
             #     print(huskyCount())
