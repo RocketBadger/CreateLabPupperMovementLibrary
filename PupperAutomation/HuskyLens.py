@@ -3,7 +3,8 @@ from sensors.HuskyLens.huskylib import HuskyLensLibrary
 
 def huskystart():
     global husky
-    husky = HuskyLensLibrary("SERIAL", "/dev/ttyUSB1", 3000000)
+    port = '/dev/ttyUSB_HUSKYLENS'
+    husky = HuskyLensLibrary("SERIAL", port, 3000000)
     print("Woof!")
     
 def huskyCount():

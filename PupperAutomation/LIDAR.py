@@ -2,7 +2,8 @@ from rplidar import RPLidar
 
 def lidargo():
     global lidar
-    lidar = RPLidar("/dev/ttyUSB0")
+    port = '/dev/ttyUSB_RPLIDAR'
+    lidar = RPLidar(port)
     print("Spin spin")
     
 def lidarinfo():

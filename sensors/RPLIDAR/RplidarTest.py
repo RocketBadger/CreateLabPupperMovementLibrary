@@ -1,5 +1,6 @@
 from rplidar import RPLidar
-lidar = RPLidar("/dev/ttyUSB0")
+port = '/dev/ttyUSB_RPLIDAR'
+lidar = RPLidar(port)
 
 info = lidar.get_info()
 print(info)
