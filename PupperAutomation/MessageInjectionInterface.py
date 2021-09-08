@@ -16,6 +16,7 @@ class MessageInectionInterface:
     def injectionLoop(self):
         # self.connection.send(msg_Trot(interrupt=False))
 
+        # REMEMBER TO RUN SUDO PIGPIOD, OR SUFFER INPUT/OUTPUT ERROR
         huskystart()
         lidargo()
         while True:
