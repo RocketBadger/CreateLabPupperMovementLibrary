@@ -6,7 +6,7 @@ import random
 from .HuskyLens import *
 from .LIDAR import *
 
-class MessageInectionInterface:
+class MessageInjectionInterface:
     def __init__(self, ActionLoopConnection: connection.Connection):
         self.connection = ActionLoopConnection
         huskystart()
