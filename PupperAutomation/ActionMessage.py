@@ -7,6 +7,7 @@ class ActionMessage:
                 e.g. a yaw + y axis message would translate into a right or left turn
                 
             !Remember to use actionMessage.parsed before sending through a pipe connection!
+            # actionMessage.parsed seemingly does not exist, is this comment outdated??
         """
 
         self.name = name

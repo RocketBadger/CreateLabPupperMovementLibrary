@@ -3,7 +3,6 @@ import time
 
 from PupperAutomation.ActionLoop import ActionLoop
 from PupperAutomation.MessageInjectionInterface import MessageInjectionInterface
-# import PupperAutomation.preLoadedQueues as Demos
 from PupperAutomation.run_robot import run_robot as robotLoop
 
 
@@ -15,13 +14,8 @@ def main():
 
         robot_conn, transLoop_conn = multiprocessing.Pipe()
         injection_conn, transLoop_reciever_conn = multiprocessing.Pipe()
-
         actionLoop = ActionLoop(transLoop_conn, transLoop_reciever_conn)
-
         injectionInterface = MessageInjectionInterface(injection_conn)
-
-        # actionLoop.actionQueue = Demos.emptyQueue()# ny tom kø
-        
 
         time.sleep(2)
 
