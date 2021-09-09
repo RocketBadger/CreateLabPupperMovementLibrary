@@ -8,6 +8,7 @@ from .HuskyLens import *
         # REMEMBER TO RUN SUDO PIGPIOD, OR SUFFER INPUT/OUTPUT ERROR
         # This error can also occur if power to LIDAR module is insufficient!
         # 'incorrect starting description bytes' error appears to be a 50/50 chance right now, just run the program again
+        # NOTE: maybe due to no stopping of LIDAR between runs?
 
 def wiggleForFriends(self):
     frens = huskyCount()

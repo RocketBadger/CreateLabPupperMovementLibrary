@@ -14,7 +14,7 @@ for new_scan, quality, angle, distance in iterator:
     if angle > 0 and angle < 90:
         if distance > 0:
             print("Distance:", str(distance))
-        i = i + 1
+        i += 1
     if i >= 10:
             break
 
