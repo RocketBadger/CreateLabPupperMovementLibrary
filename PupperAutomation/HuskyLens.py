@@ -9,12 +9,8 @@ def huskystart():
     print("Woof!")
     
 def huskyCount():
+    husky.algorthim("ALGORITHM_FACE_RECOGNITION")
     print(husky.count())
-    # frens = husky.count()
-    # if frens > 0:
-        # husky.algorthim("ALGORITHM_FACE_RECOGNITION")
-        # huskyTourist()
-        # huskySniff()
     return husky.count()
         
 # TODO
@@ -29,11 +25,6 @@ def huskySniff():
         if block.getID() == 1:
             husky.setCustomName("BALL", 1)
             print("BALL")
-        
-    # x=0
-    # for i in data:
-    #     x=x+1
-    #     print("Face {} data: {}".format(x,i))
         
 # saves a picture to SD Card upon finding object 
 def huskyTourist():
