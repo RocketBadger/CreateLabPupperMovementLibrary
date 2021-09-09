@@ -1,5 +1,6 @@
 import serial
 from sensors.HuskyLens.huskylib import HuskyLensLibrary
+from serial.serialposix import Serial
 
 def huskystart():
     global husky
@@ -17,7 +18,6 @@ def huskyCount():
     return husky.count()
         
 # TODO
-# NOT FUNCTIONAL
 def huskySniff():
     blocks=husky.requestAll()
     x=0
@@ -26,6 +26,10 @@ def huskySniff():
         # print("WOOF WOOF WOOF WOOF: " + str(block.getID()))
         x=x+1
         print("Object {} data: {}".format(str(x),str(block.learned)))
+        if block.getID() == 1:
+            husky.setCustomName("BALL", 1)
+            print("BALL")
+        
     # x=0
     # for i in data:
     #     x=x+1

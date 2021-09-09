@@ -1,4 +1,6 @@
-from PupperAutomation.HuskyLens import huskyCount, huskystart
+from PupperAutomation.HuskyLens import huskyCount, huskySniff, huskystart
 
 huskystart()
-huskyCount()
+# huskyCount()
+while True:
+    huskySniff()
