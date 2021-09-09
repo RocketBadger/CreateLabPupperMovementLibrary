@@ -14,13 +14,12 @@ def huskyCount():
     return husky.count()
         
 # TODO
+# Works but could be more elegant
 def huskySniff():
     husky.algorthim("ALGORITHM_OBJECT_TRACKING")
     blocks=husky.requestAll()
-    x=0
+    # x=0
     for block in blocks:
-        # print("WOOF WOOF WOOF WOOF: " + str(block.getID()))
-        x=x+1
         print("Object ID: {} Learned: {}".format(str(block.getID()),str(block.learned)))
         if block.getID() == 1:
             husky.setCustomName("BALL", 1)
