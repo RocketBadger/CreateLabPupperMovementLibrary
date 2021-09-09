@@ -19,9 +19,9 @@ def huskyCount():
         
 # TODO
 def huskySniff():
+    husky.algorthim("ALGORITHM_OBJECT_TRACKING")
     blocks=husky.requestAll()
     x=0
-    # print("WOOF WOOF WOOF WOOF: " + str(blocks.getID()))
     for block in blocks:
         # print("WOOF WOOF WOOF WOOF: " + str(block.getID()))
         x=x+1
