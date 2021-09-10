@@ -1,7 +1,6 @@
-from PupperAutomation.LIDAR import lidargo, lidartest
+from PupperAutomation.LIDAR import lidarstart, lidartest
 from .behaviorFunctions import *
 import time
-from .openmvAprilTest import *
 import random
 from .HuskyLens import *
 
@@ -32,7 +31,7 @@ def wiggleForFriends(self):
 
 def huskyLidarPrintTest():
     huskystart()
-    lidargo()
+    lidarstart()
     while True:
         frens = huskyCount()
         print(frens)
