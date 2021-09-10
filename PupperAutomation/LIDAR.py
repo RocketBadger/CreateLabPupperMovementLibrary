@@ -1,46 +1,53 @@
+from multiprocessing import Process, Pipe, connection
 from rplidar import RPLidar
 
-def lidarstart():
-    global lidar
-    port = '/dev/ttyUSB_RPLIDAR'
-    lidar = RPLidar(port)
-    print("Spin spin")
-    
-def lidarinfo():
-    print(lidar.get_info())
-    
-def lidarhealth():
-    print(lidar.get_health())
-    
-def lidartest():
-    for i, scan in enumerate(lidar.iter_scans()):
-        print('%d: Got %d measurements' % (i, len(scan)))
-        if i > 10:
-            break
-    iterator = lidar.iter_measures()
-    i = 0
-    for new_scan, quality, angle, distance in iterator:
-        if angle >= 90 and angle <= 180:
-            if distance != 0:
-                print("Distance:", str(distance), "Angle:", str(angle)) 
-                i += 1
-        if i >= 1000:
-            break
+class LIDAR:
+    def __init__(self, injecter_connection: connection.Connection):
+        self.connection = injecter_connection
 
-def lidarscan():
-    iterator = lidar.iter_measures()
-    i = 0
-    try:
+    # def lidarstart():
+        global rplidar
+        port = '/dev/ttyUSB_RPLIDAR'
+        rplidar = RPLidar(port)
+        print("Spin spin")
+        
+    def lidarinfo():
+        print(rplidar.get_info())
+        
+    def lidarhealth():
+        print(rplidar.get_health())
+        
+    def lidartest():
+        for i, scan in enumerate(rplidar.iter_scans()):
+            print('%d: Got %d measurements' % (i, len(scan)))
+            if i > 10:
+                break
+        iterator = rplidar.iter_measures()
+        i = 0
         for new_scan, quality, angle, distance in iterator:
-            if angle >= 315 or angle <= 45:
+            if angle >= 90 and angle <= 180:
                 if distance != 0:
                     print("Distance:", str(distance), "Angle:", str(angle)) 
                     i += 1
-    except KeyboardInterrupt:
-        print("Stopping LIDAR")
-        lidarstop()
+            if i >= 1000:
+                break
 
-def lidarstop():
-    lidar.stop()
-    lidar.stop_motor()
-    lidar.disconnect()
+    def lidarscan(self):
+        iterator = rplidar.iter_measures()
+        try:
+            for new_scan, quality, angle, distance in iterator:
+                if angle >= 315 or angle <= 45:
+                    if distance != 0:
+                        print("Distance:", str(distance), "Angle:", str(angle)) 
+                        # if distance < 200:
+                        self.connection.send([distance, angle])
+        except KeyboardInterrupt:
+            print("Stopping LIDAR")
+            self.connection.close()
+            self.lidarstop()
+
+    def lidarstop(self):
+        rplidar.stop()
+        rplidar.stop_motor()
+        rplidar.disconnect()
+

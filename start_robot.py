@@ -48,7 +48,7 @@ def main():
         robot.terminate()
         transmission.terminate()
         injecter.terminate()
-        injecter.terminate()
+        # injecter.terminate()
  
  
 main()

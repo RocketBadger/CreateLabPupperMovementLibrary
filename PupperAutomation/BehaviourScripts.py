@@ -1,8 +1,9 @@
-from PupperAutomation.LIDAR import lidarstart, lidartest
+from PupperAutomation.LIDAR import *
 from .behaviorFunctions import *
 import time
 import random
 from .HuskyLens import *
+from multiprocessing import Process, Pipe
 
         # REMEMBER TO RUN SUDO PIGPIOD, OR SUFFER INPUT/OUTPUT ERROR
         # This error can also occur if power to LIDAR module is insufficient!
