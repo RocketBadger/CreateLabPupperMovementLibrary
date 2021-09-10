@@ -4,6 +4,7 @@ import time
 from PupperAutomation.ActionLoop import ActionLoop
 from PupperAutomation.MessageInjectionInterface import MessageInjectionInterface
 from PupperAutomation.run_robot import run_robot as robotLoop
+from PupperAutomation.LIDAR import LIDAR
 
 
 
@@ -15,14 +16,18 @@ def main():
         robot_conn, transLoop_conn = multiprocessing.Pipe()
         injection_conn, transLoop_reciever_conn = multiprocessing.Pipe()
         actionLoop = ActionLoop(transLoop_conn, transLoop_reciever_conn)
-        injectionInterface = MessageInjectionInterface(injection_conn)
-
+        
+        lidar_conn, lidar_injection_conn = multiprocessing.Pipe()
+        
+        injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn)
+        lidar = LIDAR(lidar_injection_conn)
+        
         time.sleep(2)
 
         robot = multiprocessing.Process(target=robotLoop, args=(robot_conn, False,))
         transmission = multiprocessing.Process(target=actionLoop.start, args=())
         injecter = multiprocessing.Process(target=injectionInterface.injectionLoop, args=())
-
+        lidar_pipe = multiprocessing.Process(target=lidar.lidarscan, args=())
         
         # running processes
         robot.start()
@@ -36,6 +41,8 @@ def main():
         print("transmis started")
         injecter.start()
         print("injector started")
+        lidar_pipe.start()
+        print("LIDAR pipe started")
 
         # wait until processes finish
         robot.join()
@@ -44,6 +51,8 @@ def main():
         print("transmission joined started")
         injecter.join()
         print("injector joined  started")
+        lidar_pipe.join()
+        print("LIDAR pipe join started")
 
         robot.terminate()
         transmission.terminate()
