@@ -32,7 +32,7 @@ class LIDAR:
                     if angle >= 350 or angle <= 10:
                         if distance != 0:
                             # print("Distance:", str(distance), "Angle:", str(angle)) 
-                            # if distance < 700:
+                            # if distance < 500:
                             self.connection.send(distance)
                             rplidar.clean_input()
                             # Buffer may be clogging

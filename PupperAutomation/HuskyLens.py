@@ -21,7 +21,7 @@ def huskySniff():
     # x=0
     for block in blocks:
         # print("Object ID: {} Learned: {}".format(str(block.getID()),str(block.learned)))
-        if block.getID() == 1:
+        if block.getID() == 1 and block.learned:
             husky.setCustomName("BALL", 1)
             print("BALL")
         
