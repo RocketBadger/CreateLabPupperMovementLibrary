@@ -15,17 +15,17 @@ class LIDAR:
 
         print("started scanning")
         
-    def lidarinfo():
-        rplidar.clean_input()
-        print(rplidar.get_info())
+    # def lidarinfo():
+    #     rplidar.clean_input()
+    #     print(rplidar.get_info())
         
-    def lidarhealth():
-        rplidar.clean_input()
-        print(rplidar.get_health())
+    # def lidarhealth():
+    #     rplidar.clean_input()
+    #     print(rplidar.get_health())
         
     def lidarscan(self):
         # self.connection = inject_conn
-        iterator = rplidar.iter_measures()
+        iterator = rplidar.iter_measures(max_buf_meas=100000)
         while True:
             try:
                 for new_scan, quality, angle, distance in iterator:
@@ -34,15 +34,13 @@ class LIDAR:
                             # print("Distance:", str(distance), "Angle:", str(angle)) 
                             # if distance < 700:
                             self.connection.send(distance)
-                            
-                            # Buffer may be accumulating
-                            # time.sleep(1)
+                            rplidar.clean_input()
+                            # Buffer may be clogging
+                    rplidar.clean_input()
             except KeyboardInterrupt:
                 print("Stopping LIDAR")
-                # self.connection.close()
+                self.connection.close()
                 self.lidarstop()
-        # self.lidarstop()
-
 
     def lidarstop(self):
         rplidar.stop()

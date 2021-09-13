@@ -18,10 +18,10 @@ class MessageInjectionInterface:
         while True:
             # print("test")
             self.connection.send(msg_Forwards())
-            # print(self.lidar.recv())
-            if self.lidar.recv() < 200:
-                self.connection.send(msg_Height_Decrease(80))
-                self.connection.send(msg_Height_Increase(80))
-                time.sleep(1.6)
+            print(self.lidar.recv())
+            while self.lidar.recv() < 600:
+                print(self.lidar.recv())
+                self.connection.send(msg_Turn_Right())
+                # time.sleep(1)
 
                 
