@@ -8,15 +8,7 @@ from .BehaviourScripts import *
 class MessageInjectionInterface:
     def __init__(self, ActionLoopConnection: connection.Connection, lidar_conn: connection.Connection):
         self.connection = ActionLoopConnection   
-        
         self.lidar = lidar_conn
-        
-        # if __name__ == '__main__':
-        # lidar_conn, lidar_injection_conn = Pipe()
-        
-        # lidar = LIDAR(lidar_injection_conn)
-        # self.lidar_conn = lidar_conn
-        # self.lidar = lidar
         
         self.connection.send(msg_Activation())
         # huskystart()
@@ -26,14 +18,10 @@ class MessageInjectionInterface:
         while True:
             # print("test")
             self.connection.send(msg_Forwards())
-            print(self.lidar.recv())
-            while self.lidar.recv() < 600:
-                # self.connection.send(msg_Trot(interrupt=False))
-                # self.connection.send(msg_Height_Decrease(80))
-                # self.connection.send(msg_Height_Increase(80))
-                # self.connection.send(msg_Trot(interrupt=False))
-                self.connection.send(msg_Turn_Right())
-                # time.sleep(2.5)
-            # time.sleep(0.1)
-                
+            # print(self.lidar.recv())
+            if self.lidar.recv() < 200:
+                self.connection.send(msg_Height_Decrease(80))
+                self.connection.send(msg_Height_Increase(80))
+                time.sleep(1.6)
+
                 

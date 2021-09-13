@@ -42,17 +42,17 @@ def main():
         injecter.start()
         print("injector started")
         lidar_pipe.start()
-        print("LIDAR pipe started")
+        print("LIDAR pipe")
 
         # wait until processes finish
         robot.join()
-        print("robot joined started")
+        print("robot joined")
         transmission.join()
-        print("transmission joined started")
+        print("transmission joined")
         injecter.join()
-        print("injector joined  started")
+        print("injector joined")
         lidar_pipe.join()
-        print("LIDAR pipe join started")
+        print("LIDAR pipe joined")
 
         robot.terminate()
         transmission.terminate()

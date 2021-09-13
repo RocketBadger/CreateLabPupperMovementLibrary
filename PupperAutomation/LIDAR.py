@@ -12,43 +12,37 @@ class LIDAR:
         port = '/dev/ttyUSB_RPLIDAR'
         rplidar = RPLidar(port)
         print("Spin spin")
-    
-            # if __name__ == '__main__':
-        # lidar_conn, lidar_injection_conn = Pipe()
-        
-        # lidar = LIDAR(lidar_injection_conn)
-        # self.lidar_conn = lidar_conn
-        # self.lidar = lidar
-        # self.lidarscan()
+
         print("started scanning")
         
-    # def ret_conn():
-    #     return lidar_conn
-        
     def lidarinfo():
+        rplidar.clean_input()
         print(rplidar.get_info())
         
     def lidarhealth():
+        rplidar.clean_input()
         print(rplidar.get_health())
         
     def lidarscan(self):
         # self.connection = inject_conn
         iterator = rplidar.iter_measures()
-        # while True:
-        try:
-            for new_scan, quality, angle, distance in iterator:
-                if angle >= 350 or angle <= 10:
-                    if distance != 0:
-                        # print("Distance:", str(distance), "Angle:", str(angle)) 
-                        # if distance < 200:
-                        self.connection.send(distance)
-                        
-                        # Buffer may be accumulating
-                        # time.sleep(1)
-        except KeyboardInterrupt:
-            print("Stopping LIDAR")
-            self.connection.close()
-            self.lidarstop()
+        while True:
+            try:
+                for new_scan, quality, angle, distance in iterator:
+                    if angle >= 350 or angle <= 10:
+                        if distance != 0:
+                            # print("Distance:", str(distance), "Angle:", str(angle)) 
+                            # if distance < 700:
+                            self.connection.send(distance)
+                            
+                            # Buffer may be accumulating
+                            # time.sleep(1)
+            except KeyboardInterrupt:
+                print("Stopping LIDAR")
+                # self.connection.close()
+                self.lidarstop()
+        # self.lidarstop()
+
 
     def lidarstop(self):
         rplidar.stop()
