@@ -1,4 +1,5 @@
 from multiprocessing import Process, Pipe, connection
+import time
 from rplidar import RPLidar
 
 class LIDAR:
@@ -33,13 +34,17 @@ class LIDAR:
     def lidarscan(self):
         # self.connection = inject_conn
         iterator = rplidar.iter_measures()
+        # while True:
         try:
             for new_scan, quality, angle, distance in iterator:
-                if angle >= 315 or angle <= 45:
+                if angle >= 350 or angle <= 10:
                     if distance != 0:
                         # print("Distance:", str(distance), "Angle:", str(angle)) 
                         # if distance < 200:
                         self.connection.send(distance)
+                        
+                        # Buffer may be accumulating
+                        # time.sleep(1)
         except KeyboardInterrupt:
             print("Stopping LIDAR")
             self.connection.close()

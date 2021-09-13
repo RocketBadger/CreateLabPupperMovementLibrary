@@ -21,16 +21,19 @@ class MessageInjectionInterface:
         self.connection.send(msg_Activation())
         # huskystart()
     def injectionLoop(self):
-        
+        self.connection.send(msg_Trot(interrupt=False))
+        # time.sleep(1)
         while True:
-            print("test")
+            # print("test")
+            self.connection.send(msg_Forwards())
             print(self.lidar.recv())
-
-            if self.lidar.recv() < 200:
-                self.connection.send(msg_Height_Decrease(80))
-                self.connection.send(msg_Height_Increase(80))
-                time.sleep(1.6)
-            else:
-                self.connection.send(msg_Trot(interrupt=False))
-                time.sleep(1)
+            while self.lidar.recv() < 600:
+                # self.connection.send(msg_Trot(interrupt=False))
+                # self.connection.send(msg_Height_Decrease(80))
+                # self.connection.send(msg_Height_Increase(80))
+                # self.connection.send(msg_Trot(interrupt=False))
+                self.connection.send(msg_Turn_Right())
+                # time.sleep(2.5)
+            # time.sleep(0.1)
+                
                 
