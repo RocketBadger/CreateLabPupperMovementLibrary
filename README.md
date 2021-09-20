@@ -6,7 +6,7 @@ Please note that while the Stanford Pupper is programmed by Stanford to be used 
 We are currently making use of two peripheral devices, a RPLIDAR A2 LIDAR, and a HUSKYLENS camera.
 
 The LIDAR:  
-The RPLIDAR A2 is a Lidar developed by SLAMTEC. 
+The RPLIDAR A2 is a LIDAR developed by SLAMTEC. 
 With it we hope to have the Pupper walk around obstacles on its own, and, in the long run, implement SLAM, Simultaneous Location And Mapping.
 
 The camera:  
