@@ -34,9 +34,9 @@ class LIDAR:
                             # print("Distance:", str(distance), "Angle:", str(angle)) 
                             # if distance < 500:
                             self.connection.send(distance)
-                            rplidar.clean_input()
+                            # rplidar.clean_input()
                             # Buffer may be clogging
-                    rplidar.clean_input()
+                    # rplidar.clean_input()
             except KeyboardInterrupt:
                 print("Stopping LIDAR")
                 self.connection.close()
