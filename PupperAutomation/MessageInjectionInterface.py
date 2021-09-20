@@ -1,9 +1,6 @@
 from multiprocessing import connection
 import multiprocessing
 from .behaviorFunctions import *
-from .HuskyLens import *
-# from LIDAR import *
-# import LIDAR
 from .BehaviourScripts import *
 
 class MessageInjectionInterface:

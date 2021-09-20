@@ -1,19 +1,13 @@
 import multiprocessing
 import time
-
 from PupperAutomation.ActionLoop import ActionLoop
 from PupperAutomation.MessageInjectionInterface import MessageInjectionInterface
 from PupperAutomation.run_robot import run_robot as robotLoop
 from PupperAutomation.LIDAR import LIDAR
 from PupperAutomation.HuskyLens import HUSKYLENS
 
-
-
-
 def main():
-
    if __name__ == "__main__":
-
         robot_conn, transLoop_conn = multiprocessing.Pipe()
         injection_conn, transLoop_reciever_conn = multiprocessing.Pipe()
         actionLoop = ActionLoop(transLoop_conn, transLoop_reciever_conn)
@@ -37,7 +31,6 @@ def main():
         # running processes
         robot.start()
         print("robot started")
-
 
         ## This sleep timer ensures that the robot is listening before the action transmission starts.
         time.sleep(1)

@@ -1,5 +1,4 @@
-from multiprocessing import Process, Pipe, connection
-import time
+from multiprocessing import connection
 from rplidar import RPLidar
 
 class LIDAR:
@@ -8,21 +7,11 @@ class LIDAR:
 
     # def lidarstart():
         global rplidar
-        global lidar_conn
         port = '/dev/ttyUSB_RPLIDAR'
         rplidar = RPLidar(port)
         print("started scanning")
-        
-    # def lidarinfo():
-    #     rplidar.clean_input()
-    #     print(rplidar.get_info())
-        
-    # def lidarhealth():
-    #     rplidar.clean_input()
-    #     print(rplidar.get_health())
-        
+
     def lidarscan(self):
-        # self.connection = inject_conn
         iterator = rplidar.iter_measures(max_buf_meas=100000)
         while True:
             try:
@@ -32,9 +21,7 @@ class LIDAR:
                             # print("Distance:", str(distance), "Angle:", str(angle)) 
                             # if distance < 500:
                             self.connection.send(distance)
-                            # rplidar.clean_input()
                             # Buffer may be clogging
-                    # rplidar.clean_input()
             except KeyboardInterrupt:
                 print("Stopping LIDAR")
                 self.connection.close()
