@@ -11,8 +11,6 @@ class LIDAR:
         global lidar_conn
         port = '/dev/ttyUSB_RPLIDAR'
         rplidar = RPLidar(port)
-        print("Spin spin")
-
         print("started scanning")
         
     # def lidarinfo():
