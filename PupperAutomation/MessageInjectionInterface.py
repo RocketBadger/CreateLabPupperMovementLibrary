@@ -7,7 +7,7 @@ class MessageInjectionInterface:
     def __init__(self, ActionLoopConnection: connection.Connection, lidar_conn: connection.Connection, husky_conn: connection.Connection):
         self.connection = ActionLoopConnection   
         self.lidar = lidar_conn
-        self.husky = husky_conn
+        # self.husky = husky_conn
         
         self.connection.send(msg_Activation())
 
@@ -22,5 +22,5 @@ class MessageInjectionInterface:
             while self.lidar.recv() < 500:
                 # print(self.lidar.recv())
                 self.connection.send(msg_Turn_Right())
-            if self.husky.poll():
-                print(self.husky.recv())
+            # if self.husky.poll():
+            #     print(self.husky.recv())
