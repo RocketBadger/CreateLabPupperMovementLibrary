@@ -4,7 +4,7 @@ from .behaviorFunctions import *
 from .BehaviourScripts import *
 
 class MessageInjectionInterface:
-    def __init__(self, ActionLoopConnection: connection.Connection, lidar_conn: connection.Connection, husky_conn: connection.Connection):
+    def __init__(self, ActionLoopConnection: connection.Connection, lidar_conn: connection.Connection):
         self.connection = ActionLoopConnection   
         self.lidar = lidar_conn
         # self.husky = husky_conn

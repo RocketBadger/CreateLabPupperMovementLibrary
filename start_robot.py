@@ -15,7 +15,7 @@ def main():
         lidar_conn, lidar_injection_conn = multiprocessing.Pipe()
         # husky_conn, husky_injection_conn = multiprocessing.Pipe()
         
-        injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn, husky_conn)
+        injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn)
         lidar = LIDAR(lidar_injection_conn)
         # husky = HUSKYLENS(husky_injection_conn)
         
