@@ -8,7 +8,7 @@ import numpy as np
 from rplidar import RPLidar
 
 
-PORT_NAME = '/dev/ttyUSB1'
+PORT_NAME = '/dev/ttyUSB_RPLIDAR'
 
 
 def run(path):
