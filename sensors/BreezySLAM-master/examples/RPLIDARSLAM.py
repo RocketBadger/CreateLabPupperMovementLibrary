@@ -76,7 +76,7 @@ if __name__ == '__main__':
             
             lidar.stop()
             # lidar.clean_input()
-            lidar.reset()
+            # lidar.reset()
 
             # Display map and robot pose, exiting gracefully if user closes it
             if not viz.display(x/1000., y/1000., theta, mapbytes):
