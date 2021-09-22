@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 MAP_SIZE_PIXELS         = 750
-MAP_SIZE_METERS         = 15
+                      #   15  
+MAP_SIZE_METERS         = 30
 LIDAR_DEVICE            = '/dev/ttyUSB_RPLIDAR'
 
 
@@ -80,6 +81,8 @@ if __name__ == '__main__':
 
             # Display map and robot pose, exiting gracefully if user closes it
             if not viz.display(x/1000., y/1000., theta, mapbytes):
+                lidar.stop()
+                lidar.disconnect()
                 exit(0)
                 
         except KeyboardInterrupt:
