@@ -46,27 +46,27 @@ if __name__ == '__main__':
     
     while 0 < 1000:
         try:
-            if True:
-                iterator = lidar.iter_scans(max_buf_meas=10000000)
-                # Extract (quality, angle, distance) triples from current scan
-                items = [item for item in next(iterator)]
-                # print(items)
-                # Extract distances and angles from triples
-                distances = [item[2] for item in items]
-                angles    = [item[1] for item in items]
+            # if True:
+            iterator = lidar.iter_scans(max_buf_meas=10000000)
+            # Extract (quality, angle, distance) triples from current scan
+            items = [item for item in next(iterator)]
+            # print(items)
+            # Extract distances and angles from triples
+            distances = [item[2] for item in items]
+            angles    = [item[1] for item in items]
 
-                # Update SLAM with current Lidar scan and scan angles if adequate
-                if len(distances) > 50:
-                    slam.update(distances, scan_angles_degrees=angles)
-                    previous_distances = distances.copy()
-                    previous_angles    = angles.copy()
+            # Update SLAM with current Lidar scan and scan angles if adequate
+            if len(distances) > 50:
+                slam.update(distances, scan_angles_degrees=angles)
+                previous_distances = distances.copy()
+                previous_angles    = angles.copy()
 
-                # If not adequate, use previous
-                elif previous_distances is not None:
-                    slam.update(previous_distances, scan_angles_degrees=previous_angles)
+            # If not adequate, use previous
+            elif previous_distances is not None:
+                slam.update(previous_distances, scan_angles_degrees=previous_angles)
 
-                # Get current robot position
-                x, y, theta = slam.getpos()
+            # Get current robot position
+            x, y, theta = slam.getpos()
 
             # Get current map bytes as grayscale
             slam.getmap(mapbytes)
