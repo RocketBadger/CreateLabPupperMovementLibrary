@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-MAP_SIZE_PIXELS         = 750
+MAP_SIZE_PIXELS         = 1500
                       #   15  
 MAP_SIZE_METERS         = 30
 LIDAR_DEVICE            = '/dev/ttyUSB_RPLIDAR'
