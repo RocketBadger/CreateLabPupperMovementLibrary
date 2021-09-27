@@ -9,7 +9,7 @@ LIDAR_DEVICE            = '/dev/ttyUSB_RPLIDAR'
 # Ideally we could use all 250 or so samples that the RPLidar delivers in one 
 # scan, but on slower computers you'll get an empty map and unchanging position
 # at that rate.
-MIN_SAMPLES   = 85
+MIN_SAMPLES   = 75
 
 from breezyslam.algorithms import RMHC_SLAM
 from breezyslam.sensors import RPLidarA1 as LaserModel
@@ -43,27 +43,24 @@ if __name__ == '__main__':
     i = 0
     new = True
     
-    while 0 < 1000:
+    while True:
         try:
             # if True:
-            
             if new is True:
-                iterator = lidar.iter_scans(max_buf_meas=10000000)
-                
+                iterator = lidar.iter_scans(max_buf_meas=9999999999, min_len=75)
                 # First scan is crap, so ignore it
                 next(iterator)
                 new = False
-
             
             # Extract (quality, angle, distance) triples from current scan
             items = [item for item in next(iterator)]
-            # print(items)
+            print(items)
             # Extract distances and angles from triples
             distances = [item[2] for item in items]
             angles    = [item[1] for item in items]
 
             # Update SLAM with current Lidar scan and scan angles if adequate
-            if len(distances) > MIN_SAMPLES:
+            if len(distances) >= MIN_SAMPLES:
                 slam.update(distances, scan_angles_degrees=angles)
                 previous_distances = distances.copy()
                 previous_angles    = angles.copy()
@@ -85,7 +82,7 @@ if __name__ == '__main__':
                 new = True
                 lidar.stop()
                 lidar.reset()
- 
+
             # Display map and robot pose, exiting gracefully if user closes it
             if not viz.display(x/1000., y/1000., theta, mapbytes):
                 exit(0)
