@@ -40,15 +40,21 @@ if __name__ == '__main__':
     previous_distances = None
     previous_angles    = None
 
-    # First scan is crap, so ignore it
-    # next(iterator)
-
     i = 0
+    new = True
     
     while 0 < 1000:
         try:
             # if True:
-            iterator = lidar.iter_scans(max_buf_meas=10000000)
+            
+            if new is True:
+                iterator = lidar.iter_scans(max_buf_meas=10000000)
+                
+                # First scan is crap, so ignore it
+                next(iterator)
+                new = False
+
+            
             # Extract (quality, angle, distance) triples from current scan
             items = [item for item in next(iterator)]
             # print(items)
@@ -57,7 +63,7 @@ if __name__ == '__main__':
             angles    = [item[1] for item in items]
 
             # Update SLAM with current Lidar scan and scan angles if adequate
-            if len(distances) > 50:
+            if len(distances) > 0:
                 slam.update(distances, scan_angles_degrees=angles)
                 previous_distances = distances.copy()
                 previous_angles    = angles.copy()
@@ -65,7 +71,7 @@ if __name__ == '__main__':
             # If not adequate, use previous
             elif previous_distances is not None:
                 slam.update(previous_distances, scan_angles_degrees=previous_angles)
-
+                
             # Get current robot position
             x, y, theta = slam.getpos()
 
@@ -75,14 +81,13 @@ if __name__ == '__main__':
             i = i + 1
             print (i)
             
-            lidar.stop()
-            # lidar.clean_input()
-            # lidar.reset()
-
+            if i % 4 is 0:
+                new = True
+                lidar.stop()
+                lidar.reset()
+ 
             # Display map and robot pose, exiting gracefully if user closes it
             if not viz.display(x/1000., y/1000., theta, mapbytes):
-                lidar.stop()
-                lidar.disconnect()
                 exit(0)
                 
         except KeyboardInterrupt:
