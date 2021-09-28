@@ -113,7 +113,7 @@ class Configuration:
         )
 
         ################### INERTIAL ####################
-        self.FRAME_MASS = 0.560  # kg
+        self.FRAME_MASS = 0.660  # kg
         self.MODULE_MASS = 0.080  # kg
         self.LEG_MASS = 0.030  # kg
         self.MASS = self.FRAME_MASS + (self.MODULE_MASS + self.LEG_MASS) * 4
