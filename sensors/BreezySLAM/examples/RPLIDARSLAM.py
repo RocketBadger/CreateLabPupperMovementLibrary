@@ -47,7 +47,7 @@ if __name__ == '__main__':
         try:
             # if True:
             if new is True:
-                iterator = lidar.iter_scans(max_buf_meas=9999999999, min_len=75)
+                iterator = lidar.iter_scans(max_buf_meas=9999999999)
                 # First scan is crap, so ignore it
                 next(iterator)
                 new = False
