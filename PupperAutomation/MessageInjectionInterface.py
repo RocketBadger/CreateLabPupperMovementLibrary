@@ -14,10 +14,10 @@ class MessageInjectionInterface:
     def injectionLoop(self):
         conlist = [self.connection, self.lidar]
         
-        # self.connection.send(msg_Trot(interrupt=False))
+        self.connection.send(msg_Trot(interrupt=False))
 
-        # while True:
-        #     self.connection.send(msg_Forwards())
+        while True:
+            self.connection.send(msg_Forwards())
             
             # multiprocessing.connection.wait(conlist)
             # print(self.lidar.recv())
