@@ -18,7 +18,7 @@ class ActionMessage:
         self.y_axis_velocity = 0
  
         self.yaw = 0
-        self.pitch = 0
+        self.pitch = 0.3
 
         self.activation = 0
         self.trot = 0
