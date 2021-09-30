@@ -16,13 +16,13 @@ class MessageInjectionInterface:
         
         self.connection.send(msg_Trot(interrupt=False))
 
-        while True:
+        # while True:
         #     self.connection.send(msg_Forwards())
             
-            multiprocessing.connection.wait(conlist)
-            # print(self.lidar.recv())
-            while self.lidar.recv() <= 800:
-                print(self.lidar.recv())
-                self.connection.send(msg_Turn_Right())
+            # multiprocessing.connection.wait(conlist)
+            # # print(self.lidar.recv())
+            # while self.lidar.recv() <= 800:
+            #     print(self.lidar.recv())
+            #     self.connection.send(msg_Turn_Right())
             # if self.husky.poll():
             #     print(self.husky.recv())
