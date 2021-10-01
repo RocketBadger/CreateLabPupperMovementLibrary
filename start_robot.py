@@ -13,11 +13,11 @@ def main():
         actionLoop = ActionLoop(transLoop_conn, transLoop_reciever_conn)
         
         lidar_conn, lidar_injection_conn = multiprocessing.Pipe()
-        # husky_conn, husky_injection_conn = multiprocessing.Pipe()
+        husky_conn, husky_injection_conn = multiprocessing.Pipe()
         
-        injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn)
+        injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn, husky_conn)
         lidar = LIDAR(lidar_injection_conn)
-        # husky = HUSKYLENS(husky_injection_conn)
+        husky = HUSKYLENS(husky_injection_conn)
         
         time.sleep(2)
 
@@ -26,7 +26,7 @@ def main():
         injecter = multiprocessing.Process(target=injectionInterface.injectionLoop, args=())
         
         lidar_pipe = multiprocessing.Process(target=lidar.lidarscan, args=())
-        # husky_pipe = multiprocessing.Process(target=husky.huskySniff, args=())
+        husky_pipe = multiprocessing.Process(target=husky.findPeople, args=())
         
         # running processes
         robot.start()
@@ -42,8 +42,8 @@ def main():
         
         lidar_pipe.start()
         print("LIDAR pipe")
-        # husky_pipe.start()
-        # print("Husky pipe")
+        husky_pipe.start()
+        print("Husky pipe")
 
         # wait until processes finish
         robot.join()
@@ -55,14 +55,14 @@ def main():
         
         lidar_pipe.join()
         print("LIDAR pipe joined")
-        # husky_pipe.join()
-        # print("husky pipe joined")
+        husky_pipe.join()
+        print("husky pipe joined")
 
         robot.terminate()
         transmission.terminate()
         injecter.terminate()
         
         lidar_pipe.terminate()
-        # husky_pipe.terminate()
+        husky_pipe.terminate()
  
 main()

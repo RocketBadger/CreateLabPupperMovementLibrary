@@ -13,9 +13,18 @@ class HUSKYLENS:
         husky.algorthim("ALGORITHM_FACE_RECOGNITION")
         print(husky.count())
         return husky.count()
+    
+    def findPeople(self):
+        husky.algorthim("ALGORITHM_FACE_RECOGNITION")
+        while True:
+            while (husky.count() > 0):
+                if (husky.count() == 1):
+                    self.connection.send(str(husky.count()) + " person found!")
+                else:
+                    self.connection.send(str(husky.count()) + " people found!")
             
     # Works but not all that well
-    def huskySniff(self):
+    def findBall(self):
         husky.algorthim("ALGORITHM_OBJECT_TRACKING")
         while True:
             try:
