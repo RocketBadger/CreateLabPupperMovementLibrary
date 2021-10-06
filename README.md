@@ -12,3 +12,5 @@ With it we hope to have the Pupper walk around obstacles on its own, and, in the
 The camera:  
 The HUSKYLENS is an AI machine vision sensor developed by DFRobot.
 We want to use it to add more complex object/people recognition to the Pupper, allowing it to identify what is in front of it.
+
+If you are not using these devices, or want a clean start to add your own, please see the "No-Peripheral-Devices" branch.
