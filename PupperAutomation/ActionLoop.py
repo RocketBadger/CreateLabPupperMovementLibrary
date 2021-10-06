@@ -1,5 +1,4 @@
 from .ActionMessage import *
-from queue import Queue
 from multiprocessing import connection
 
 
@@ -20,7 +19,9 @@ class ActionLoop:
                 currentActionMsg: ActionMessage = self.injecter_Connection.recv()
                 ticks = currentActionMsg.ticks
                 messageDone = False
+                
                 print(currentActionMsg.toDictionary())
+                
                 while messageDone == False:
                     self.robot_Connection.send(currentActionMsg.toDictionary())
                     ticks -= 1

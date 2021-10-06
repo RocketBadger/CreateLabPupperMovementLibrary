@@ -5,9 +5,6 @@ class ActionMessage:
             A message template that forms the basis for State altering commands.
                 an actionMessage can alter more than one State object atribute 
                 e.g. a yaw + y axis message would translate into a right or left turn
-                
-            !Remember to use actionMessage.parsed before sending through a pipe connection!
-            # actionMessage.parsed seemingly does not exist, is this comment outdated??
         """
 
         self.name = name
@@ -29,14 +26,12 @@ class ActionMessage:
         self.height_possitive = 0
         self.height_negative = 0
 
-        ## currently not used anywhere
         self.hop = 0
         self.finishhop = 0
 
     def toDictionary(self, MESSAGE_RATE = 50 ):
         """
             returns this action message as a dictionary that can be converted into a command by a MessageHandler.
-
         """
         parsedMessage = {
 
