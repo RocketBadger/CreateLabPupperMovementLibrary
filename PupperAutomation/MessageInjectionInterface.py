@@ -7,6 +7,8 @@ class MessageInjectionInterface:
         
         self.connection.send(msg_Activation())
 
+    # This is the main "do stuff" loop
+    # Here you can change what the robot actually *does* during its runtime
     def injectionLoop(self):
         self.connection.send(msg_Trot(interrupt=False))
 
