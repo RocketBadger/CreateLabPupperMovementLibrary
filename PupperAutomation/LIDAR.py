@@ -5,8 +5,8 @@ class LIDAR:
     def __init__(self, injecter_connection: connection.Connection):
         self.connection = injecter_connection
 
-    # def lidarstart():
         global rplidar
+        # This port name has been configured by assigning fixed USB port names, to make sure the Pi finds the correct device for that USB port
         port = '/dev/ttyUSB_RPLIDAR'
         rplidar = RPLidar(port)
         print("started scanning")
