@@ -10,7 +10,6 @@ def msg_Wait(ticks = 20):
 
 ############### Mode switching functions
 
-
 def msg_Activation():
 
     actionMessage = ActionMessage("Activation")
@@ -35,7 +34,6 @@ def msg_Height_Increase(ticks = 0):
     actionMessage.ticks = ticks
   
     return actionMessage
-
     
 def msg_Height_Decrease(ticks = 0):
 
@@ -52,8 +50,6 @@ def msg_Roll_Right(ticks = 0):
     actionMessage.ticks = ticks
 
     return actionMessage
-
-
     
 def msg_Roll_Left(ticks = 0, right = True):
 
@@ -76,7 +72,6 @@ def msg_Yaw_Left(ticks = 0):
     actionMessage = ActionMessage("Yaw left")
     actionMessage.yaw = -1
     actionMessage.ticks = ticks
-
 
     return actionMessage
 
@@ -110,7 +105,6 @@ def msg_Generic(ticks = 20, x_axis_velocity=0,y_axis_velocity=0,pitch=0, yaw=0,r
     actionMessage.Activation = Activation
     actionMessage.ticks = ticks
     return actionMessage
-
 
 def msg_Forwards(ticks = 0):
     actionMessage = ActionMessage("forwards")
@@ -161,11 +155,5 @@ def msg_Turn_Left(ticks = 0):
 def msg_Hop(ticks = 0):
     actionMessage = ActionMessage("hop")
     actionMessage.hop = 1
-    actionMessage.ticks = ticks
-    return actionMessage
-
-def msg_Finishhop(ticks = 0):
-    actionMessage = ActionMessage("finish_hop")
-    actionMessage.finishhop = 1
     actionMessage.ticks = ticks
     return actionMessage
