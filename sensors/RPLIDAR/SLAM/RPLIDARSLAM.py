@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-MAP_SIZE_PIXELS         = 1500
-                      #   15  
+# YOU WILL NEED X11 FORWARDING TO RUN THIS SCRIPT
+
+MAP_SIZE_PIXELS         = 150
 MAP_SIZE_METERS         = 30
 LIDAR_DEVICE            = '/dev/ttyUSB_RPLIDAR'
 
