@@ -16,6 +16,7 @@ def main():
         husky_conn, husky_injection_conn = multiprocessing.Pipe()
         
         injectionInterface = MessageInjectionInterface(injection_conn, lidar_conn, husky_conn)
+        
         lidar = LIDAR(lidar_injection_conn)
         husky = HUSKYLENS(husky_injection_conn)
         
@@ -25,6 +26,7 @@ def main():
         transmission = multiprocessing.Process(target=actionLoop.start, args=())
         injecter = multiprocessing.Process(target=injectionInterface.injectionLoop, args=())
         
+        # You can change the function used in MessageInjectionInterface injectionloop, by changing the "target=" value here
         lidar_pipe = multiprocessing.Process(target=lidar.lidarscan, args=())
         husky_pipe = multiprocessing.Process(target=husky.findPeople, args=())
         

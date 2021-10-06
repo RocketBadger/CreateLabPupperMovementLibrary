@@ -4,7 +4,9 @@ from multiprocessing import connection
 class HUSKYLENS:
     def __init__(self, injecter_connection: connection.Connection):
         self.connection = injecter_connection
+        
         global husky
+        # This port name has been configured by assigning fixed USB port names, to make sure the Pi finds the correct device for that USB port
         port = '/dev/ttyUSB_HUSKYLENS'
         husky = HuskyLensLibrary("SERIAL", port, 3000000)
         print("Woof!")
@@ -28,7 +30,6 @@ class HUSKYLENS:
         husky.algorthim("ALGORITHM_OBJECT_TRACKING")
         while True:
             try:
-                # blocks=husky.requestAll()
                 for block in husky.requestAll():
                     if block.getID() == 1 and block.learned:
                         husky.setCustomName("BALL", 1)

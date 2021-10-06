@@ -6,7 +6,6 @@ MAP_SIZE_PIXELS         = 150
 MAP_SIZE_METERS         = 30
 LIDAR_DEVICE            = '/dev/ttyUSB_RPLIDAR'
 
-
 # Ideally we could use all 250 or so samples that the RPLidar delivers in one 
 # scan, but on slower computers you'll get an empty map and unchanging position
 # at that rate.
@@ -33,9 +32,6 @@ if __name__ == '__main__':
 
     # Initialize empty map
     mapbytes = bytearray(MAP_SIZE_PIXELS * MAP_SIZE_PIXELS)
-
-    # Create an iterator to collect scan data from the RPLidar
-    # iterator = lidar.iter_scans(max_buf_meas=10000000)
 
     # We will use these to store previous scan in case current scan is inadequate
     previous_distances = None
@@ -79,6 +75,7 @@ if __name__ == '__main__':
             i = i + 1
             print (i)
             
+            # Stops, resets and restarts LIDAR every fifth iteration to avoid buffer overflow
             if i % 5 is 0:
                 new = True
                 lidar.stop()
